@@ -1,10 +1,12 @@
-import './App.css';
-import { Counter } from './Components/Counter';
+import './App.scss';
+// import { Counter } from './Components/Counter';
+import { Header } from './Components/Header';
 
 function App() {
   return (
     <div className="App">
-     <Counter/>
+     <Header/>
+     {/* <Counter/> */}
     </div>
   );
 }
