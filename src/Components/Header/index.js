@@ -4,12 +4,12 @@ import Logo from "../../Assets/logo.png"
 
 export const Header = () => {
   return (
-    <header>
-        <div className='wrap'>
-            <div className='logo'>
-                <img src={Logo} alt='Logo'/>
-            </div>
+    <header data-test="headerComponent">
+    <div className="wrap">
+        <div className="logo">
+            <img data-test="logoIMG" src={Logo} alt="Logo" />
         </div>
-    </header>
+    </div>
+</header>
   )
 }
