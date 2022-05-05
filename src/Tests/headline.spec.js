@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import Headline from "../Components/HeadLine";
-import { findByTestAtrr } from "../Utils";
+import { findByTestAtrr,checkProps } from "../Utils";
+// import checkPropTypes from 'check-prop-types';
 
 const setup = (props={})=>{
     const component = shallow(<Headline {...props}/>);
@@ -8,6 +9,26 @@ const setup = (props={})=>{
 }
 
 describe("Headline component",()=>{
+
+    describe("Checking PropTypes",()=>{
+        it("Should not throw a warning",()=>{
+            const expectedProps = {
+                header: "Test Header",
+                desc : "Test Desc ",
+                tempArr : [{
+                    first : "Test fname",
+                    last : "Test lname",
+                    email : "Test email",
+                    age : 16,
+                    onlineStatus : false
+                  }]
+            };
+
+            const propsError = checkProps(Headline,expectedProps);
+            expect(propsError).toBeUndefined();
+        })
+    })
+
     describe("Have Props",()=>{
         let wrapper;
         beforeEach(()=>{
@@ -24,12 +45,12 @@ describe("Headline component",()=>{
         });
 
         it("Should render h1",()=>{
-            const h1 = findByTestAtrr(wrapper,'Header');
+            const h1 = findByTestAtrr(wrapper,'header');
             expect(h1.length).toBe(1);
         });
 
         it("Should render desc",()=>{
-            const p = findByTestAtrr(wrapper,'Desc');
+            const p = findByTestAtrr(wrapper,'desc');
             expect(p.length).toBe(1);
         })
     });
@@ -46,12 +67,12 @@ describe("Headline component",()=>{
         });
 
         it("Should not render h1",()=>{
-            const h1 = findByTestAtrr(wrapper,'Header');
+            const h1 = findByTestAtrr(wrapper,'header');
             expect(h1.length).toBe(0);
         });
 
         it("Should not render desc",()=>{
-            const p = findByTestAtrr(wrapper,'Desc');
+            const p = findByTestAtrr(wrapper,'desc');
             expect(p.length).toBe(0);
         })
     });
